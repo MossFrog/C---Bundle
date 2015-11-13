@@ -17,7 +17,7 @@ public partial class Form1 : Form
         }
 
 
-        //-- MouseMove event that will comve the window if the Left mouse button is pressed --//
+        //-- MouseMove event that will move the window if the Left mouse button is pressed --//
         private void Form1_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
