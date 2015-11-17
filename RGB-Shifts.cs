@@ -13,9 +13,12 @@ namespace RGBTest
     public partial class Form1 : Form
     {
 
-        int R = 255;
-        int G = 255;
+        int R = 0;
+        int G = 0;
         int B = 255;
+
+        int state = 0;
+        
         public Form1()
         {
             InitializeComponent();
@@ -31,24 +34,46 @@ namespace RGBTest
             //-- Ticks every 10ms --//
             this.BackColor = Color.FromArgb(R, G, B);
 
-            R--;
+            //-- Display the RGB information --//
+            infoLabel.Text = "R: " + R.ToString();
+            infoLabel.Text += "\nG: " + G.ToString();
+            infoLabel.Text += "\nB: " + B.ToString();
 
-            if (R <= 0)
+
+            //-- Loop that cycles through three main states (colors) --//
+            if (state == 0)
             {
-                R = 0;
-                G--;
-            }
-            
-            if (G <= 0)
-            {
-                G = 0;
                 B--;
+                R++;
+                if (R >= 255)
+                {
+                    R = 255;
+                    state = 1;
+                }
             }
 
-            if (B <= 0)
+            else if (state == 1)
             {
-                B = 0;
+                R--;
+                G++;
+                if (G >= 255)
+                {
+                    G = 255;
+                    state = 2;
+                }
             }
+
+            else if (state == 2)
+            {
+                G--;
+                B++;
+                if (B >= 255)
+                {
+                    B = 255;
+                    state = 0;
+                }
+            }
+
         }
 
     }
